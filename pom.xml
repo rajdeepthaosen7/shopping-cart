@@ -39,5 +39,10 @@
     <module>api-gateway</module>
     <module>products-service</module>
     <module>orders-service</module>
+    <module>customers-service</module>
+    <module>shipping-service</module>
+    <module>reviews-service</module>
+    <module>notification-service</module>
+
   </modules>
 </project>

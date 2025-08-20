@@ -16,12 +16,42 @@ spring:
             - Path=/api/products/**
           filters:
             - StripPrefix=2
+
         - id: orders
           uri: lb://orders-service
           predicates:
             - Path=/api/orders/**
           filters:
             - StripPrefix=2
+
+        - id: customers
+          uri: lb://customers-service
+          predicates:
+            - Path=/api/customers/**
+          filters:
+            - StripPrefix=2
+
+        - id: shipping
+          uri: lb://shipping-service
+          predicates:
+            - Path=/api/shipping/**
+          filters:
+            - StripPrefix=2
+        - id: reviews
+          uri: lb://reviews-service
+          predicates:
+            - Path=/api/reviews/**
+          filters:
+            - StripPrefix=2
+        - id: notification
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notify/**
+          filters:
+            - StripPrefix=2
+
+
+
 
 eureka:
   client:
