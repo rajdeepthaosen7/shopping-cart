@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9000
 
 spring:
   application:
@@ -8,52 +8,50 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true
+          enabled: false
       routes:
         - id: products
           uri: lb://products-service
           predicates:
-            - Path=/api/products/**
-          filters:
-            - StripPrefix=2
-
+            - Path=/products/**
         - id: orders
           uri: lb://orders-service
           predicates:
-            - Path=/api/orders/**
-          filters:
-            - StripPrefix=2
-
+            - Path=/orders/**
         - id: customers
           uri: lb://customers-service
           predicates:
-            - Path=/api/customers/**
-          filters:
-            - StripPrefix=2
-
+            - Path=/customers/**
         - id: shipping
           uri: lb://shipping-service
           predicates:
-            - Path=/api/shipping/**
-          filters:
-            - StripPrefix=2
+            - Path=/shipping/**
         - id: reviews
           uri: lb://reviews-service
           predicates:
-            - Path=/api/reviews/**
-          filters:
-            - StripPrefix=2
+            - Path=/reviews/**
         - id: notification
           uri: lb://notification-service
           predicates:
-            - Path=/api/notify/**
-          filters:
-            - StripPrefix=2
-
-
+            - Path=/notify/**
+#    gateway:
 
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    gateway:
+      enabled: true
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: DEBUG
+
