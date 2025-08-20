@@ -1,17 +1,19 @@
 server:
   port: 8082
-
+  error:
+    include-message: always
+    include-binding-errors: always
 spring:
   application:
     name: orders-service
   datasource:
-    url: jdbc:h2:mem:ordersdb;MODE=MySQL;DB_CLOSE_DELAY=-1
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:mysql://localhost:3306/orders_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: appuser
+    password: appsecret
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    hibernate.ddl-auto: update
-
+    hibernate:
+      ddl-auto: update
 eureka:
   client:
     service-url:
@@ -20,4 +22,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,mappings
