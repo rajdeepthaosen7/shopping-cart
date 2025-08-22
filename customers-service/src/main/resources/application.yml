@@ -13,6 +13,8 @@ spring:
     hibernate:
       ddl-auto: update     # dev-only; Flyway is better later
     show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
 
 eureka:
   client:

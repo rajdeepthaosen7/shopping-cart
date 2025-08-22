@@ -34,8 +34,18 @@ spring:
           uri: lb://notification-service
           predicates:
             - Path=/notify/**
-#    gateway:
-
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:5173"
+              - "http://127.0.0.1:5173"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: false
+        default-filters:
+          - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 
 eureka:
   client:

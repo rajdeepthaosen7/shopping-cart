@@ -10,7 +10,6 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long productId;
     private Integer qty;
     private BigDecimal priceAtOrder;

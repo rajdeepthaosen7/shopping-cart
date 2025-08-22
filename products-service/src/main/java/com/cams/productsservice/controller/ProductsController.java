@@ -3,7 +3,7 @@ package com.cams.productsservice.controller;
 import com.cams.productsservice.dto.ProductDto;
 import com.cams.productsservice.service.ProductService;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +14,10 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping(value = "/products", produces = "application/json")
+@RequiredArgsConstructor
 public class ProductsController {
 
     private final ProductService service;
-
-    public ProductsController(ProductService service) {
-        this.service = service;
-    }
 
     @GetMapping
     public List<ProductDto> list() {
@@ -28,7 +25,7 @@ public class ProductsController {
     }
 
     @GetMapping("/{id}")
-    public ProductDto get(@PathVariable Long id) {
+    public ProductDto get(@PathVariable("id") Long id) {
         return service.getDtoById(id);
     }
 
@@ -41,7 +38,7 @@ public class ProductsController {
     }
 
     @PutMapping(value = "/{id}", consumes = "application/json")
-    public ProductDto update(@PathVariable Long id, @Valid @RequestBody ProductDto req) {
+    public ProductDto update(@PathVariable("id") Long id, @Valid @RequestBody ProductDto req) {
         return service.update(id, req.name(), req.price(), req.stock());
     }
 
